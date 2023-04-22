@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    .form-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    input {
+      width: 100px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    button {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #display {
+      font-size: 10rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .fa {
+      font-size: 2.5rem;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-group">
+      <label for="seconds1" class="mr-3">秒数1：</label>
+      <input id="seconds1" type="number" value="10" min="1" class="form-control mr-3">
+      <label for="seconds2" class="mr-3">秒数2：</label>
+      <input id="seconds2" type="number" value="5" min="1" class="form-control mr-3">
+      <label for="times" class="mr-3">繰り返し：</label>
+      <input id="times" type="number" value="3" min="1" class="form-control">
+    </div>
+    <div class="text-center">
+      <button id="start" class="btn btn-lg btn-primary mr-3" onclick="start(event)"><i class="fas fa-play"></i>
+</button>
+<button id="stop" class="btn btn-lg btn-danger" onclick="stop(event)"><i class="fas fa-stop"></i></button>
+</div>
+<div class="text-center">
+<h1><span id="display"></span></h1>
+</div>
+
+  </div>
+  <script>
+    let timer;
+    let count = 0;
+    let seconds1 = document.getElementById("seconds1").value;
+    let seconds2 = document.getElementById("seconds2").value;
+    let times = document.getElementById("times").value;
+    let display = document.getElementById("display");function start(event) {
+  event.preventDefault();
+  count = 0;
+  seconds1 = document.getElementById("seconds1").value;
+  seconds2 = document.getElementById("seconds2").value;
+  times = document.getElementById("times").value;
+  clearInterval(timer);
+  timer = setInterval(function () {
+    count++;
+    if (count % 2 === 1) {
+      display.innerHTML = seconds1;
+    } else {
+      display.innerHTML = seconds2;
+    }
+    if (count >= times * 2) {
+      clearInterval(timer);
+    }
+  }, 1000);
+}
+
+function stop(event) {
+  event.preventDefault();
+  clearInterval(timer);
+  display.innerHTML = "";
+}
+</script>
+</body>
+</html>
