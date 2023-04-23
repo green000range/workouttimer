@@ -50,46 +50,70 @@
       <input id="times" type="number" value="3" min="1" class="form-control">
     </div>
     <div class="text-center">
-      <button id="start" class="btn btn-lg btn-primary mr-3" onclick="start(event)"><i class="fas fa-play"></i>
-</button>
-<button id="stop" class="btn btn-lg btn-danger" onclick="stop(event)"><i class="fas fa-stop"></i></button>
-</div>
-<div class="text-center">
-<h1><span id="display"></span></h1>
-</div>
-
+      <button id="start" class="btn btn-lg btn-primary mr-3" onclick="start()"><i class="fas fa-play"></i> スタート</button>
+      <button id="stop" class="btn btn-lg btn-danger" onclick="stop()" disabled><i class="fas fa-stop"></i> ストップ</button>
+    </div>
+    <p id="display" class="text-center">0</p>
   </div>
+  <audio id="beep" src="beep.mp3"></audio>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
+    const beep = new Audio("beep.mp3");
     let timer;
-    let count = 0;
-    let seconds1 = document.getElementById("seconds1").value;
-    let seconds2 = document.getElementById("seconds2").value;
-    let times = document.getElementById("times").value;
-    let display = document.getElementById("display");function start(event) {
-  event.preventDefault();
-  count = 0;
-  seconds1 = document.getElementById("seconds1").value;
-  seconds2 = document.getElementById("seconds2").value;
-  times = document.getElementById("times").value;
-  clearInterval(timer);
-  timer = setInterval(function () {
-    count++;
-    if (count % 2 === 1) {
-      display.innerHTML = seconds1;
+    let count1;
+    let count2;
+    let repeat;
+    function start() {
+  const display = document.getElementById("display");
+  const seconds1 = parseInt(document.getElementById("seconds1").value);
+  const seconds2 = parseInt(document.getElementById("seconds2").value);
+  repeat = parseInt(document.getElementById("times").value);
+  count1 = seconds1;
+  count2 = seconds2;
+  display.innerHTML = count1;
+  timer = setInterval(() => {
+    if (count1 > 0) {
+      count1--;
+      display.innerHTML = count1;
+      if (count1 === 0) {
+        beep.play();
+      }
+    } else if (count2 > 0) {
+      count2--;
+      display.innerHTML = count2;
+      if (count2 === 0) {
+        beep.play();
+      }
     } else {
-      display.innerHTML = seconds2;
-    }
-    if (count >= times * 2) {
-      clearInterval(timer);
+      beep.play();
+      repeat--;
+      if (repeat === 0) {
+        stop();
+      } else {
+        count1 = seconds1;
+        count2 = seconds2;
+        display.innerHTML = count1;
+      }
     }
   }, 1000);
+  document.getElementById("start").disabled = true;
+  document.getElementById("stop").disabled = false;
+  beep.play(); // 追加
 }
 
-function stop(event) {
-  event.preventDefault();
-  clearInterval(timer);
-  display.innerHTML = "";
+
+function stop() {
+clearInterval(timer);
+document.getElementById("start").disabled = false;
+document.getElementById("stop").disabled = true;
+document.getElementById("display").innerHTML = "0";
 }
 </script>
+
 </body>
 </html>
+
+
+
