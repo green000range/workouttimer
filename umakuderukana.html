@@ -102,13 +102,28 @@
                 if (count1 > 0) {
                     count1--;
                     display.innerHTML = count1;
-                    if (count1 === 0) {
+                    if (count1 === 30) {
+                        sanjyuu.play();
+                    }
+                    else if (count1 === 20) {
+                        nijyuu.play();
+                    }
+                    else if (count1 === 10) {
+                        jyuu.play();
+                    }
+                    else if (count1 === 0) {
                         hato.play();
                     }
                 } else if (count2 > 0) {
                     count2--;
                     display.innerHTML = count2;
-                    if (count2 === 0) {
+                    if (count2 === 20) {
+                        nijyuu.play();
+                    }
+                    else if (count2 === 10) {
+                        jyuu.play();
+                    }
+                    else if (count2 === 0) {
                         hato.play();
                     }
                 } else {
