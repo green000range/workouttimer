@@ -105,25 +105,7 @@
 }
 
 
-function stop() {
-clearInterval(timer);
-document.getElementById("start").disabled = false;
-document.getElementById("stop").disabled = true;
-document.getElementById("display").innerHTML = "0";
 
-  clearInterval(timer);
-  document.getElementById("start").disabled = false;
-  document.getElementById("stop").disabled = true;
-  document.getElementById("display").innerHTML = "0";
-
-  // カウントダウンの数字以外の要素を表示する
-  const formGroup = document.querySelector('.form-group');
-  const buttons = document.querySelector('.text-center');
-  formGroup.style.display = 'flex';
-  buttons.style.display = 'block';
-
-
-}
 </script>
 
 </body>
