@@ -88,8 +88,6 @@
         let timer;
         let count1;
         let count2;
-        let count3;
-        let count4;
         let repeat;
         function start() {
             const formGroup = document.querySelector('.form-group');
@@ -101,8 +99,6 @@
             const seconds2 = parseInt(document.getElementById("seconds2").value);
             repeat = parseInt(document.getElementById("times").value);
             count1 = seconds1;
-            count3 = seconds1;
-            count4 = seconds1;
             count2 = seconds2;
             
             display.innerHTML = count1;
@@ -115,10 +111,10 @@
                     if (count1 === 30) {
                         sanjyuu.play();
                     }
-                    if (count3 === 20) {
+                    else if (count1 === 20) {
                         nijyuu.play();
                     }
-                    if (count4 === 10) {
+                    else if (count1 === 10) {
                         jyuu.play();
                     }
                     else if (count1 === 0) {
