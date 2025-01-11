@@ -100,7 +100,15 @@
             repeat = parseInt(document.getElementById("times").value);
             count1 = seconds1;
             count2 = seconds2;
-            
+            const audioElements = [hato, jyuu, nijyuu, sanjyuu];
+            audioElements.forEach(audio => {
+                audio.load();
+                audio.play().then(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }).catch(e => console.log("Audio preload failed", e));
+            });
+
             display.innerHTML = count1;
             timer = setInterval(() => {
                 if (count1 > 0) {
