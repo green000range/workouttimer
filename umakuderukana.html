@@ -103,10 +103,6 @@
             const audioElements = [hato, jyuu, nijyuu, sanjyuu];
             audioElements.forEach(audio => {
                 audio.load();
-                audio.play().then(() => {
-                    audio.pause();
-                    audio.currentTime = 0;
-                }).catch(e => console.log("Audio preload failed", e));
             });
 
             display.innerHTML = count1;
